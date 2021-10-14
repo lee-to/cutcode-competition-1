@@ -15,12 +15,13 @@ class CreateRatingsTable extends Migration
     {
         Schema::create('ratings', function (Blueprint $table) {
             $table->id();
-
-            $table->integer('post_id');
-
+            $table->unsignedBigInteger('post_id');
             $table->double('rating', 2);
-
             $table->timestamps();
+
+            $table->foreign('post_id')
+                ->references('id')
+                ->on('posts');
         });
     }
 
